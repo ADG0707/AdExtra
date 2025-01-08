@@ -32,7 +32,6 @@ _G["AdExtra.Adag_brain"] = function(body)
     local max_health = 5000
     local hp_threashold = 1 - Hardness
     local FOV = (Hardness / 10) * 360 * 10
-    game_print(FOV)
     local target_x = body.values[1] or body.cost_center_x
     local target_y = body.values[2] or body.cost_center_y
     local retreat = body.values[3]
