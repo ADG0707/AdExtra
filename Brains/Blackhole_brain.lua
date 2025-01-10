@@ -8,7 +8,7 @@ _G["AdExtra.Black_Hole_Brain"] = function(body)
     local function Retrive(type, degrestrict, retr)
         local cbody, cid
         local best_health = -1 -- Track the healthiest target for selection
-
+        local found = false
         for _, b in ipairs(bodies) do
             -- Validate the entity
             if b and b.team and b.health and b.cost_center_x and b.cost_center_y then
@@ -27,6 +27,7 @@ _G["AdExtra.Black_Hole_Brain"] = function(body)
                         cbody = b
                         cid = b.id
                         best_health = b.health
+                        found = true
                     end
                 end
 
@@ -34,16 +35,16 @@ _G["AdExtra.Black_Hole_Brain"] = function(body)
                 if type == "Ally" and b.team == body.team then
                     cbody = b
                     cid = b.id
+                    found = true
                     break
                 end
             end
         end
 
-        return cbody, cid
+        return cbody, cid , found
     end
 
-    local ebody,eid = Retrive("Enemy",false,false)
-
+    local ebody,eid,found = Retrive("Enemy",false,false)
 
     brain.movement = 1
     brain.rotation = rand_normal() * math.sin(body.age)
@@ -55,14 +56,16 @@ _G["AdExtra.Black_Hole_Brain"] = function(body)
         attack = true
     end
 
-    if (attack == true and ebody and cooldown2 > 0) then
+    if (attack == true and found and cooldown2 > 0) then
         brain.rotation = 1
         brain.movement = 0
         brain.ability = true
+    
     elseif(cooldown2 < 0)then
         attack = false
+        cooldown2 = 3*160
     end
-
+    avoid_walls(body,brain,100)
     brain.values = {}
     brain.values[1] = cooldown
     brain.values[2] = attack
