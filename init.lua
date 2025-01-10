@@ -19,11 +19,15 @@
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Adag_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/AdagChild_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Levithan_brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Blackhole_brain.lua")
+
 
 local M = {
     api_version = 0,
     version = "1.1.0"
 }
+
+
 
 
 
@@ -69,6 +73,8 @@ function M.post(api, config)
             "AdExtra.AdagChild_brain")
         register_creature(api.acquire_id("AdExtra.Levithan"), "data/scripts/lua_mods/mods/AdExtra/creatures/cancer_Levithan.bod",
             "AdExtra.Levithan_brain","AdExtra.cancer")
+        register_creature(api.acquire_id("AdExtra.Black_Hole"), "data/scripts/lua_mods/mods/AdExtra/creatures/blockhole.bod",
+            "AdExtra.Black_Hole_Brain","AdExtra.explosion_resist")
         -- return the result of the original, not strictly neccesary here but useful in some situations
         return unpack(r)
     end
@@ -82,6 +88,8 @@ function M.post(api, config)
         add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Adag"), spawn_rate, 1)
 		add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Child"), spawn_rate * 2, 1)
         add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 10, 1)
+        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Black_Hole"), spawn_rate / 20, 1)
+
 
         return unpack(r)
     end
