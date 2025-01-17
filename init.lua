@@ -49,7 +49,7 @@ function M.pre(api, config)
     local old_add_creature_spawn_chance = add_creature_spawn_chance
     function add_creature_spawn_chance(...)
         local args = {...} -- collect the arguments into a table for easy modification
-        args[4] = args[4] * 40 -- this arg is the xp drop amount, so make everything drop 20x xp
+        args[4] = args[4] -- this arg is the xp drop amount, so make everything drop 20x xp
         return old_add_creature_spawn_chance(unpack(args)) -- call the original with the modified args
     end
 	
@@ -72,7 +72,7 @@ function M.post(api, config)
 		register_creature(api.acquire_id("AdExtra.Child"), "data/scripts/lua_mods/mods/AdExtra/creatures/AdagChild.bod",
             "AdExtra.AdagChild_brain")
         register_creature(api.acquire_id("AdExtra.Levithan"), "data/scripts/lua_mods/mods/AdExtra/creatures/cancer_Levithan.bod",
-            "AdExtra.Levithan_brain","AdExtra.cancer")
+            "AdExtra.Levithan_brain","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer")
         register_creature(api.acquire_id("AdExtra.Black_Hole"), "data/scripts/lua_mods/mods/AdExtra/creatures/blockhole.bod",
             "AdExtra.Black_Hole_Brain","AdExtra.explosion_resist")
         -- return the result of the original, not strictly neccesary here but useful in some situations
