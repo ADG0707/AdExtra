@@ -20,6 +20,8 @@
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/AdagChild_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Levithan_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Blackhole_brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Lightning_Levithan_Brain.lua")
+
 
 
 local M = {
@@ -40,6 +42,17 @@ _G["AdExtra.explosion_resist"] = function(body_id, x, y)
 end
 _G["AdExtra.cancer"] = function(body_id, x, y)
     give_mutation(body_id, MUT_CANCER )
+    return {nil, nil, x, y} -- this determines spawn extra info
+end
+_G["AdExtra.speed"] = function(body_id, x, y)
+    give_mutation(body_id, MUT_DRIFTING )
+    return {nil, nil, x, y} -- this determines spawn extra info
+end
+_G["AdExtra.Lightning_Levithan"] = function(body_id, x, y)
+    give_mutation(body_id, MUT_CHAIN_LIGHTNING )
+    give_mutation(body_id, MUT_DRIFTING )
+    give_mutation(body_id, MUT_EXPLOSIVE_RESISTANCE )
+
     return {nil, nil, x, y} -- this determines spawn extra info
 end
 
@@ -72,9 +85,11 @@ function M.post(api, config)
 		register_creature(api.acquire_id("AdExtra.Child"), "data/scripts/lua_mods/mods/AdExtra/creatures/AdagChild.bod",
             "AdExtra.AdagChild_brain")
         register_creature(api.acquire_id("AdExtra.Levithan"), "data/scripts/lua_mods/mods/AdExtra/creatures/cancer_Levithan.bod",
-            "AdExtra.Levithan_brain","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer","AdExtra.cancer")
+            "AdExtra.Levithan_brain","AdExtra.cancer")
         register_creature(api.acquire_id("AdExtra.Black_Hole"), "data/scripts/lua_mods/mods/AdExtra/creatures/blockhole.bod",
             "AdExtra.Black_Hole_Brain","AdExtra.explosion_resist")
+        register_creature(api.acquire_id("AdExtra.Lightning_Levithan"), "data/scripts/lua_mods/mods/AdExtra/creatures/Lightning_Levithan.bod",
+            "AdExtra.Lightning_Levithan_brain","AdExtra.Lightning_Levithan")
         -- return the result of the original, not strictly neccesary here but useful in some situations
         return unpack(r)
     end
@@ -85,10 +100,12 @@ function M.post(api, config)
         local r = {old_init_biomes(...)}
         -- add our creatures to the starting biome, if spawn_rates are too high you will start to see issues where only some creatures can spawn
         -- to fix this make sure the sum isn't too high, i will perhaps add a prehook for compat with this in future
-        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Adag"), spawn_rate, 1)
-		add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Child"), spawn_rate * 2, 1)
-        add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 10, 1)
-        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Black_Hole"), spawn_rate / 20, 1)
+        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Adag"), spawn_rate, 40)
+		add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Child"), spawn_rate * 2, 10)
+        add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 10, 14)
+        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Black_Hole"), spawn_rate / 20, 100)
+        add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.Lightning_Levithan"), spawn_rate / 7, 300)
+
 
 
         return unpack(r)

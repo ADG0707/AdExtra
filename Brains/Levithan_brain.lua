@@ -1,17 +1,16 @@
 _G["AdExtra.Levithan_brain"] = function(body)
     ---@type brain
+    
     local brain = {}
     local bodies = get_visible_bodies(body.id, 200, false)
 
-    local cooldown = 1000
-    local retreat = 0
-    local health = body.health
-    local Hardness = _G["Hardness"]
+    local health = math.max(body.health or 0, 1)  or 1
+    local Hardness = _G["Hardness"] or 0.5
     local max_health = 10000
     local hp_threashold = 1 - Hardness
-    local retreat = body.values[3]
-    local cooldown = body.values[4]
-    local cooldownRetr = body.values[5]
+    local retreat = body.values[3] or 0
+    local cooldown = body.values[4] or 1000
+    local cooldownRetr = body.values[5] or 1500
     local avoidwalldistance = 20
     brain.movement = 1
     brain.rotation = rand_int(-2,2) * math.sin(body.age)
@@ -115,5 +114,6 @@ _G["AdExtra.Levithan_brain"] = function(body)
     brain.values[3] = retreat
     brain.values[4] = cooldown
     brain.values[5] = cooldownRetr
+
     return brain
 end

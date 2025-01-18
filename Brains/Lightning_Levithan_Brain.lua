@@ -1,5 +1,5 @@
 
-_G["AdExtra.Adag_brain"] = function(body)
+_G["AdExtra.Lightning_Levithan_brain"] = function(body)
 
 
 
@@ -7,9 +7,9 @@ _G["AdExtra.Adag_brain"] = function(body)
     ---@type brain
     local health = body.health
     local Hardness = _G["Hardness"]
-    local max_health = 5000
+    local max_health = 10000
     local hp_threashold = 1 - Hardness
-    local FOV = (Hardness / 10) * 360 * 10
+    local FOV = 90
     local target_x = body.values[1] or body.cost_center_x
     local target_y = body.values[2] or body.cost_center_y
     local retreat = body.values[3] or 0
@@ -135,23 +135,6 @@ _G["AdExtra.Adag_brain"] = function(body)
             avoid_walls(body, brain, avoidwalldistance)
         end
     end
-    local function Follow()
-        local closest_friend, closest_friend_id = Retrive("Ally")
-        if closest_friend and closest_friend.creature_id == body.creature_id and retreat == 0 then
-            brain.grab_weight = 0.9
-            brain.ability = false
-            local distance = math.sqrt(math.pow(closest_friend.cost_center_x - body.cost_center_x, 2) +
-                                           math.pow(closest_friend.cost_center_y - body.cost_center_y, 2))
-            brain.grab_target_x = closest_friend.cost_center_x
-            brain.grab_target_y = closest_friend.cost_center_y
-            local dirx = brain.grab_target_x - body.cost_center_x
-            local diry = brain.grab_target_y - body.cost_center_y
-            brain.movement = distance < 80 and 0 or 1
-            brain.rotation = cross(body.dir_x, body.dir_y, dirx + (rand_int(-2,2) * 50) , diry + (rand_int(-2,2) * 50))
-
-            
-        end
-    end
 
     CooldownHandler()
 
@@ -161,7 +144,6 @@ _G["AdExtra.Adag_brain"] = function(body)
         Attack()
     end
 
-    Follow()
     CooldownHandler()
 
     -- Wall avoidance is always a fallback
