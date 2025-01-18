@@ -21,6 +21,7 @@
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Levithan_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Blackhole_brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Lightning_Levithan_Brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/flame_Brain.lua")
 
 
 
@@ -90,6 +91,8 @@ function M.post(api, config)
             "AdExtra.Black_Hole_Brain","AdExtra.explosion_resist")
         register_creature(api.acquire_id("AdExtra.Lightning_Levithan"), "data/scripts/lua_mods/mods/AdExtra/creatures/Lightning_Levithan.bod",
             "AdExtra.Lightning_Levithan_brain","AdExtra.Lightning_Levithan")
+        register_creature(api.acquire_id("AdExtra.Flamer"), "data/scripts/lua_mods/mods/AdExtra/creatures/flamer.bod",
+            "AdExtra.flame_brain","AdExtra.explosion_resist")
         -- return the result of the original, not strictly neccesary here but useful in some situations
         return unpack(r)
     end
@@ -105,6 +108,7 @@ function M.post(api, config)
         add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 10, 14)
         add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Black_Hole"), spawn_rate / 20, 100)
         add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.Lightning_Levithan"), spawn_rate / 7, 300)
+        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Flamer"), spawn_rate * 0.6, 40)
 
 
 
