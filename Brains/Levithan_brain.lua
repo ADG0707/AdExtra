@@ -16,7 +16,7 @@ _G["AdExtra.Levithan_brain"] = function(body)
     brain.movement = 1
     brain.rotation = rand_int(-2,2) * math.sin(body.age)
     avoid_walls(body,brain,50)
-    
+    local blacklistedids = {} or body.values[6]
     local function CooldownHandler()
         if cooldown > 0 then
             cooldown = math.max(0, cooldown - 1)
@@ -109,23 +109,42 @@ _G["AdExtra.Levithan_brain"] = function(body)
         Retreater()
 
     end
-
+    if #blacklistedids > 10 then
+        blacklistedids = {}
+    end
     local closest_enemy, closest_enemy_id = Retrive("Enemy", false, true)
     if closest_enemy then
         brain.grab_target_x = closest_enemy.cost_center_x
         brain.grab_target_y = closest_enemy.cost_center_y
-        local distance = math.sqrt((body.cost_center_x - brain.grab_target_x)^2 + (body.cost_center_y - brain.grab_target_y)^2)
-        if distance < 100 and body.health < 3000 then
-            give_mutation(closest_enemy_id,MUT_CANCER)
+        local valid = true
+        for i, v in ipairs(blacklistedids) do
+            if closest_enemy_id == v then
+                valid = false
+            end
         end
+        if valid == true then
+            local distance = math.sqrt((body.cost_center_x - brain.grab_target_x)^2 + (body.cost_center_y - brain.grab_target_y)^2)
+        if distance < 300 and body.health < 11000 then
+            table.insert(blacklistedids,closest_enemy_id)
+            give_mutation(closest_enemy_id,MUT_CANCER)
+            closest_enemy.values[20] = "Cancer"
+        end
+        end
+
+
+
+
+
+
+        
     end
-   
     brain.values = {}
     brain.values[1] = body.cost_center_x
     brain.values[2] = body.cost_center_y
     brain.values[3] = retreat
     brain.values[4] = cooldown
     brain.values[5] = cooldownRetr
+    brain.values[6] = blacklistedids
 
     return brain
 end

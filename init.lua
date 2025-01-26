@@ -120,11 +120,11 @@ function M.post(api, config)
         -- add our creatures to the starting biome, if spawn_rates are too high you will start to see issues where only some creatures can spawn
         -- to fix this make sure the sum isn't too high, i will perhaps add a prehook for compat with this in future
         add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Adag"), spawn_rate, 40)
-		add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Child"), spawn_rate * 2, 10)
-        add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 10, 14)
+		add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Child"), spawn_rate * 1.5, 10)
+        add_creature_spawn_chance("STRT", api.acquire_id("AdExtra.Levithan"), spawn_rate / 11, 14)
         add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Black_Hole"), spawn_rate / 20, 100)
-        add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.Lightning_Levithan"), spawn_rate / 7, 300)
-        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Flamer"), spawn_rate * 0.6, 40)
+        add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.Lightning_Levithan"), spawn_rate / 8, 300)
+        add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Flamer"), spawn_rate * 0.5, 40)
         add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.assasin"), spawn_rate, 40)
 
 

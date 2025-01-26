@@ -19,7 +19,7 @@ _G["AdExtra.Lightning_Levithan_brain"] = function(body)
     local cooldownRetr = body.values[5]
     local avoidwalldistance = 20
 
-    local bodies = get_visible_bodies(body.id, 200, false)
+    local bodies = get_visible_bodies(body.id, 400, false)
     local brain = {}
     brain.movement = 0.5
     brain.rotation = 0.2 * rand_normal() * math.sin(0.7 * body.mass)
@@ -134,11 +134,7 @@ _G["AdExtra.Lightning_Levithan_brain"] = function(body)
 
     CooldownHandler()
 
-    if retreat == 1 then
-        Retreater()
-    else
-        Attack()
-    end
+    Attack()
 
     CooldownHandler()
 
