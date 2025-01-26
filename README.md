@@ -1,4 +1,5 @@
-# AdExtra-mod-Primordialis-
+# AdExtra-mod-Primordialis
+# Primordialis
 A Extensive mod for Primordialis
 
 Installation:
@@ -14,6 +15,7 @@ Enemies:
   - Adag: A fast eater with explosive fins, can be found in Fire land.
   - AdagChild: a fast but harmless eater , related to Adag.
   - flamer: This enemy is dangerous it will spit flames on to you and burn away ur body.
+  - Assasin: A slow but tanky and sucking enemy wich can straight up attack it's own allies
 
 Rare Enemies:
   - Lightning_Levithan: This is a dangerous and extreemly tanky boss, wich spawns in small cases on ICEE biome.
