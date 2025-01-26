@@ -79,7 +79,12 @@ end
 
 -- post hook is for defining creatures
 function M.post(api, config)
-    api.log("Creator: " + M.Creator)
+
+
+    api.log("--------AdExtra-------- \n" .."     * Creator: ".. M.Creator .. "\n     * Version: "..M.version)
+
+
+
     local spawn_rate = config.spawn_rates or 0.05
     _G["Hardness"] = config.Hardness
 
