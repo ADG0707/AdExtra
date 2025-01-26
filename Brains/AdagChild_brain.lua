@@ -1,6 +1,7 @@
 _G["AdExtra.AdagChild_brain"] = function(body)
     ---@type brain
     local health = body.health
+    body.team = 4
 
     local max_health = 200
 

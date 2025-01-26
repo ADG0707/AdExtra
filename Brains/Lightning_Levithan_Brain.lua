@@ -5,6 +5,8 @@ _G["AdExtra.Lightning_Levithan_brain"] = function(body)
 
 
     ---@type brain
+    body.team = 3
+
     local health = body.health
     local Hardness = _G["Hardness"]
     local max_health = 10000
@@ -33,12 +35,6 @@ _G["AdExtra.Lightning_Levithan_brain"] = function(body)
                 -- Enemy logic
                 if type == "Enemy" and b.team ~= body.team then
                     local is_valid_target = true
-
-                    -- Directional restriction
-                    if degrestrict then
-                        local insight = isWithinSector(body,b,FOV*2)
-                        is_valid_target = insight
-                    end
 
                     -- Select the healthiest target
                     if is_valid_target and b.health > 100 and b.health > best_health then
