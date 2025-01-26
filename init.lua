@@ -28,7 +28,7 @@
 
 local M = {
     api_version = 0,
-    version = "1.07",
+    version = "1.08",
     Creator = "ADG"
 }
 

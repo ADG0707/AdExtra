@@ -9,7 +9,6 @@ _G["AdExtra.Adag_brain"] = function(body)
     local Hardness = _G["Hardness"]
     local max_health = 5000
     body.team = 4
-
     local hp_threashold = 1 - Hardness
     local FOV = (Hardness / 10) * 360 * 10
     local target_x = body.values[1] or body.cost_center_x

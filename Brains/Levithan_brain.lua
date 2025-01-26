@@ -3,7 +3,8 @@ _G["AdExtra.Levithan_brain"] = function(body)
     
     local brain = {}
     local bodies = get_visible_bodies(body.id, 200, false)
-
+    give_mutation(body.id,MUT_CANCER)
+   
     local health = math.max(body.health or 0, 1)  or 1
     local Hardness = _G["Hardness"] or 0.5
     local max_health = 10000
@@ -15,7 +16,7 @@ _G["AdExtra.Levithan_brain"] = function(body)
     brain.movement = 1
     brain.rotation = rand_int(-2,2) * math.sin(body.age)
     avoid_walls(body,brain,50)
-
+    
     local function CooldownHandler()
         if cooldown > 0 then
             cooldown = math.max(0, cooldown - 1)
@@ -81,7 +82,7 @@ _G["AdExtra.Levithan_brain"] = function(body)
         brain.movement = 1
         closest_enemy, closest_enemy_id = Retrive("Enemy", false, true)
         if closest_enemy then
-
+           
             brain.movement = 1
             if (dot(body.dir_x, body.dir_y, closest_enemy.cost_center_x, closest_enemy.cost_center_y) < 0.9) then
                 body.rotation = 0
@@ -108,6 +109,17 @@ _G["AdExtra.Levithan_brain"] = function(body)
         Retreater()
 
     end
+
+    local closest_enemy, closest_enemy_id = Retrive("Enemy", false, true)
+    if closest_enemy then
+        brain.grab_target_x = closest_enemy.cost_center_x
+        brain.grab_target_y = closest_enemy.cost_center_y
+        local distance = math.sqrt((body.cost_center_x - brain.grab_target_x)^2 + (body.cost_center_y - brain.grab_target_y)^2)
+        if distance < 100 and body.health < 3000 then
+            give_mutation(closest_enemy_id,MUT_CANCER)
+        end
+    end
+   
     brain.values = {}
     brain.values[1] = body.cost_center_x
     brain.values[2] = body.cost_center_y
