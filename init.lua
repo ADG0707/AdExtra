@@ -28,7 +28,8 @@
 
 local M = {
     api_version = 0,
-    version = "1.1.0"
+    version = "1.07",
+    Creator = "ADG"
 }
 
 
@@ -78,6 +79,7 @@ end
 
 -- post hook is for defining creatures
 function M.post(api, config)
+    api.log("Creator: " + M.Creator)
     local spawn_rate = config.spawn_rates or 0.05
     _G["Hardness"] = config.Hardness
 
