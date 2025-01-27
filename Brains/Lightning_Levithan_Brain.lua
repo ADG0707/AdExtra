@@ -5,7 +5,6 @@ _G["AdExtra.Lightning_Levithan_brain"] = function(body)
 
 
     ---@type brain
-    body.team = 3
 
     local health = body.health
     local Hardness = _G["Hardness"]
