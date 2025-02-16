@@ -32,7 +32,7 @@
 
 local M = {
     api_version = 0,
-    version = "1.08",
+    version = "1.09",
     Creator = "ADG"
 }
 
