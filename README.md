@@ -22,9 +22,14 @@ A Extensive mod for Primordialis
   - CANCER_Levithan: Harmless but extreemly defensive, it has cancer and a big amount of health, this creature can be found in the starter area¨ ... Oh and be carefull if u attack it, The cancer can spread through air.
   - Black_Hole: .. nothing else to say except, avoid it. 
 
-This mod is in progress feel free to reach out if you have any suggestions etc.
+* Plants:
+  - Heilakorbius: Healing plant, really friendly
+  - stalkchewer: DANGEROUSE, this plant is not friendly and do not come near it or you will be demolished
 
-Created by: ADG
 
-Socials:
-  Discord: ADG232
+# This mod is in progress feel free to reach out if you have any suggestions etc.
+
+# Created by: ADG
+
+# Socials:
+  - Discord: ADG232

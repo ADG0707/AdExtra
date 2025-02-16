@@ -19,6 +19,8 @@ _G["AdExtra.Adag_brain"] = function(body)
 
     local bodies = get_visible_bodies(body.id, 400, false)
     local brain = {}
+    -- draw_circle(body.cost_center_x,body.cost_center_y,400,1,0,0,0.05)
+
     brain.movement = 0.5
     brain.rotation = 0.2 * rand_normal() * math.sin(0.7 * body.mass)
     brain.ability = false
@@ -108,7 +110,6 @@ _G["AdExtra.Adag_brain"] = function(body)
             brain.movement = lerp(brain.movement, 0.5 * dot(body.wall_dx, body.wall_dy, body.dir_x, body.dir_y),
                 wall_avoidance)
         end
-
     end
     local function Attack()
         local closest_enemy, closest_enemy_id = Retrive("Enemy", true, false) -- Only check for forward-facing enemies
@@ -133,6 +134,8 @@ _G["AdExtra.Adag_brain"] = function(body)
 
             -- Avoid walls during the attack
             avoid_walls(body, brain, avoidwalldistance)
+            --draw_circle(closest_enemy.cost_center_x,closest_enemy.cost_center_y,5,1,0.4,1,1)
+
         end
     end
     local function Follow()

@@ -23,7 +23,11 @@
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Lightning_Levithan_Brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/flame_Brain.lua")
         dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Assasin_brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Creacker_brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/stalkchewer_Brain.lua")
+        dofile("data/scripts/lua_mods/mods/AdExtra/Brains/Heilakorbius_brain.lua")
 
+        
 
 
 local M = {
@@ -109,6 +113,12 @@ function M.post(api, config)
             "AdExtra.flame_brain","AdExtra.explosion_resist")
         register_creature(api.acquire_id("AdExtra.assasin"), "data/scripts/lua_mods/mods/AdExtra/creatures/assasin.bod",
             "AdExtra.Assasin_brain","AdExtra.Lightning_ExplosiveRes")
+        register_creature(api.acquire_id("AdExtra.Cracker"), "data/scripts/lua_mods/mods/AdExtra/creatures/Cracker.bod",
+            "AdExtra.Cracker")
+        register_creature(api.acquire_id("AdExtra.stalkchewer"), "data/scripts/lua_mods/mods/AdExtra/creatures/stalkchewer.bod",
+            "AdExtra.stalkchewer")
+            register_creature(api.acquire_id("AdExtra.Heilakorbius"), "data/scripts/lua_mods/mods/AdExtra/creatures/Heilakorbius.bod",
+            "AdExtra.Heilakorbius")
         -- return the result of the original, not strictly neccesary here but useful in some situations
         return unpack(r)
     end
@@ -126,6 +136,13 @@ function M.post(api, config)
         add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.Lightning_Levithan"), spawn_rate / 8, 300)
         add_creature_spawn_chance("FIRE", api.acquire_id("AdExtra.Flamer"), spawn_rate * 0.5, 40)
         add_creature_spawn_chance("ICEE", api.acquire_id("AdExtra.assasin"), spawn_rate, 40)
+        add_plant_spawn_chance("DARK", api.acquire_id("AdExtra.stalkchewer"), spawn_rate / 2, 200)
+        add_plant_spawn_chance("STRT", api.acquire_id("AdExtra.stalkchewer"), spawn_rate / 7, 200)
+        add_plant_spawn_chance("ICEE", api.acquire_id("AdExtra.stalkchewer"), spawn_rate / 2.2, 200)
+        add_plant_spawn_chance("STRT", api.acquire_id("AdExtra.Heilakorbius"), spawn_rate, 1)
+
+
+
 
 
 
